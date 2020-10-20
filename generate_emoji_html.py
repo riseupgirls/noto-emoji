@@ -309,7 +309,7 @@ def _get_image_data(image_dir, ext, prefix):
     if not m:
       if filename.startswith('unknown_flag.') or filename.startswith('p4p_'):
         continue
-      fails.append('"%s" did not match: "%s"' % (expect_re.pattern, filename))
+      # fails.append('"%s" did not match: "%s"' % (expect_re.pattern, filename))
       continue
     seq = m.group(1)
     this_failed = False

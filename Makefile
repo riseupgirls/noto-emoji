@@ -232,3 +232,10 @@ clean:
 
 .PHONY:	clean flags emoji renamed_flags quantized compressed check_tools
 
+
+release: compressed
+	rm -rf build/release/emoji/
+	python3 rename_emoji_with_shortcode.py
+	cd build/release && python3 ../../generate_emoji_html.py -o index -d emoji
+	tar cvfz release.tgz -C build release
+
