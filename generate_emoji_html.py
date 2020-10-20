@@ -140,6 +140,32 @@ def _get_desc(key_tuple, aliases, dir_infos, basepaths):
       except:
         pass
   return CELL_PREFIX + desc
+import re
+import unidecode
+
+em_version = re.compile(r"^(\(emoji\) *)?E\d+(\.\d+)?")
+
+
+# this function is copied in generate_emoji_html
+def shortcode(u_seq):
+    n = unicode_data.get_emoji_sequence_name(u_seq)
+    n = unidecode.unidecode(n)
+    n = re.sub(em_version, "", n)
+    n = n.replace("(emoji)", "")
+    n = n.lower().strip()
+    n = n.replace("*", "star")
+    n = n.replace(r"\x{23}", "number_sign")
+    n = n.replace("'", "")
+    n = n.replace("(", "")
+    n = n.replace(")", "_")
+    n = n.replace(": ", "_")
+    n = n.replace(" & ", "_")
+    n = n.replace(" - ", "_")
+    n = n.replace("-", "_")
+    n = n.replace(", ", "_")
+    n = n.replace(" ", "_")
+    n = n.replace("__", "_")
+    return n
 
 
 def _get_name(key_tuple, annotations):
