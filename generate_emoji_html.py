@@ -174,6 +174,7 @@ def _get_name(key_tuple, annotations):
       '' if annotation is None else ' class="%s"' % annotation)
 
   seq_name = unicode_data.get_emoji_sequence_name(key_tuple)
+  seq_name = shortcode(key_tuple)
   if seq_name == None:
     if key_tuple == (0x20e3,):
       seq_name = '(combining enlosing keycap)'
